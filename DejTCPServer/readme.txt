@@ -1,4 +1,4 @@
-This project is a demo for dejero
+This project is a demon of a TCP server and client
  
 1. Source files are inside src and include files are inside include.There are 2 applications, namely TCPServer and TestClient. 
 TestClient is the test driver for the TCPServer application.
