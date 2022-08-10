@@ -103,7 +103,7 @@ bool isBST(bnode* root, bnode* l = NULL, bnode* r = NULL)
 
 //Now test the implementration 
 
-int Binarymain()
+int main()
 {
     bnode* root = newNode(1);
     root->left = newNode(2);

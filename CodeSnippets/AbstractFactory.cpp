@@ -167,7 +167,17 @@ void checkDecodeFeature()
   delete factory; //since this function is responsible for this object
 }
 
-int main(){
+void CheckCPPVersion() {
+	if (__cplusplus == 201703L) std::cout << "C++17\n";
+	else if (__cplusplus == 201402L) std::cout << "C++14\n";
+	else if (__cplusplus == 201103L) std::cout << "C++11\n";
+	else if (__cplusplus == 199711L) std::cout << "C++98\n";
+	else std::cout << "pre-standard C++\n";
+}
+
+
+int AbsFactmain(){
+	CheckCPPVersion();
 	int a = 3;
 	cout << (a++) << std::endl;
 	cout << (a) << std::endl;

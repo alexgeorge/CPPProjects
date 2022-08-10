@@ -2,6 +2,9 @@
 #include <string.h>
 #include <malloc.h>
 #include <stdlib.h>
+#include <iostream>
+#include <memory>
+#include <thread>
 
 /*
 Find the missing number from a list say [1,2,4,6,3,7,8:
@@ -238,18 +241,18 @@ void stringManipulate (void)
 
    //what is the difference?
    char str4[] = "Test"; //this is {'T','e','s','t','\0'}
-   char *str5 = "Test";  //this is a pointer to literal Test; You can't modify string literals.
+   //char *str5 = "Test";  //this is a pointer to literal Test; You can't modify string literals.
    /*
    The main difference between them is that the first is an array and the other one is a pointer. 
    The array owns its contents, which happen to be a copy of "Test", while the pointer simply refers 
    to the contents of the string (which in this case is immutable).
    */
-   printf("[%s- size %d] [%s- size %d] \n", str4,sizeof(str4), str5, sizeof(str5));
+   //printf("[%s- size %d] [%s- size %d] \n", str4,sizeof(str4), str5, sizeof(str5));
    //you cant increment the str4 as it doesnt have lvalue
    //to do that
    char* str6 = str4;
-   printf("%s  %s\n", ++str6,++str5);
-   str5 = "Changed";
+   printf("%s  %s\n", ++str6);
+   auto str5 = "Changed";
    printf("[%s- size %d] [%s- size %d] \n", str4,sizeof(str4), str5, sizeof(str5));
 }
 
@@ -289,8 +292,6 @@ void stringGetVersion(char* input, int* vers, int *size)
 	*size = i;
 }
 
-
-
 //simple stack implementation
 #define MAX_ELEMS 10
 int stack[MAX_ELEMS];
@@ -310,6 +311,31 @@ int stackPop(void)
 	return ret;
 }
 
+// A Robert Floyd triangle is a right-angled triangle of an array of natural numbers, which is named after Robert Floyd. 
+// It is defined by filling the rows of the triangle with consecutive numbers, starting with 1 in the top left corner.
+// Here is a Robert Floyd triangle:
+// 1
+// 2   3
+// 4   5   6
+// 7   8   9   10
+// 11  12  13  14  15
+
+void WriteRFTriangle(uint32_t len, const char* print_with)
+{
+	int row = 1;
+	int col = 1;
+	for (int i = 1; i< len; ++i) {
+		printf("%s", print_with);
+		if (row == col) {
+			printf("\n");
+			row++;
+			col = 0;
+		}
+		col++;
+	};
+	printf("\n");
+}
+
 
 void menu()
 {
@@ -322,10 +348,31 @@ void menu()
     printf("6 - String operations. \n");
 	printf("7 - Structure padding \n");
 	printf("8 - simple stack \n");
-	printf("9 - Quit \n");
+	printf("9 - Multithread action \n");
+	printf("10- Rob Floyd Triangle draw \n");
+	printf("20- Quit \n");
 }
 
-int cprogramsmain()
+void first() {
+	std::this_thread::sleep_for(std::chrono::seconds(6));
+}
+void second() {
+	std::this_thread::sleep_for(std::chrono::seconds(10));
+}
+int threadTestmain() {
+	std::cout << "Welcome To My Domain Starting the first thread.\n";
+	std::thread example(first);
+	std::cout << "Welcome To My Domain Starting the second thread...\n";
+	std::thread example1(second);
+	std::cout << "Thanks users we will waiting for the threads completion..." << std::endl;
+	example.join();
+	example1.join();
+	std::cout << "Thread completion is over !\n";
+
+	return 0;
+}
+
+int main()
 {
 	int in = 0;
 	menu();
@@ -344,7 +391,7 @@ int cprogramsmain()
 	int version[5];
 	int versize;
 	while(1){
-		printf("Enter selection 0-9 (9 to quit) \n");
+		printf("Enter selection (2020 to quit) \n");
 		scanf("%d",&in);
 		switch(in){
 		case 0:
@@ -399,10 +446,16 @@ int cprogramsmain()
 				printf("pop [%d] \n", stackPop());
 			}
 			break;
+		case 9:
+			threadTestmain();
+			break;
+		case 10:
+			WriteRFTriangle(150, "x");
+			break;
 		default:
 			break;
 		}
-		if (in==9) break;
+		if (in==20) break;
 	}
 	return 1;
 }

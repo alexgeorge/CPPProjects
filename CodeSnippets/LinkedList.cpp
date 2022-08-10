@@ -216,7 +216,7 @@ void print_reverse(lnode* list)
 	}	
 }
 
-int mainLinkList(void)
+int LSmain(void)
 {
 	int cmd = 0x81;
 	int cmd1 = cmd & 0x18;

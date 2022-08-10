@@ -164,7 +164,7 @@ void testF1(const int& test)
 }
 
 // Main function for the program
-int Samplemain( ) {
+int CopyCtrmain( ) {
 /*
    Line line1(10);
 
