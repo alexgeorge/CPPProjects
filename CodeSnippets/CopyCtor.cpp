@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 /*
@@ -100,7 +101,7 @@ MyLine::MyLine()
 MyLine::MyLine(int length)
 {
 	
-	printf("Special ctor\n");
+	printf("Special ctor %d \n", length);
 
 }
 
@@ -163,8 +164,24 @@ void testF1(const int& test)
 
 }
 
+void menu(std::vector<std::string> menuItems){
+    std::cout << "Make selection [1-" << menuItems.size() << "]" << std::endl;
+    int idx = 0;
+    for (auto item : menuItems){
+            ++idx;
+            std::cout << "[" << idx <<"] " << item << std::endl; 
+    }
+}
+
 // Main function for the program
-int CopyCtrmain( ) {
+int CCmain( ) {
+
+    // std::vector<std::string> strMenuItems;
+    // strMenuItems.insert(strMenuItems.end(), {"Draw Rob Floyd Triangle (RFT)", 
+    // "Recursive RFTriangle", "Pattern print X"});
+
+    // menu(strMenuItems);
+
 /*
    Line line1(10);
 

@@ -372,7 +372,7 @@ int threadTestmain() {
 	return 0;
 }
 
-int main()
+int Cpromain()
 {
 	int in = 0;
 	menu();
