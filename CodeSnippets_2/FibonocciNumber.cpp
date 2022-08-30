@@ -40,8 +40,11 @@ int64_t Fibo(int64_t n)
     if (memo.find(n) != memo.end()){
         return memo[n];
     }
+    //To check the timecomplexity reduction by using the memo
+    //comment out the memo portion and test
     memo[n] = Fibo(n-1) + Fibo(n-2);
     return memo[n];
+    //return Fibo(n-1) + Fibo(n-2);
 }
 
 int main ()
