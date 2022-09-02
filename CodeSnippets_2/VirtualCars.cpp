@@ -33,6 +33,25 @@ void TestCastings(CVehicle *pVeh){
     auto conv = static_cast<int>(flo);
     std::cout << "Static cast conversion [" << conv << "]" << std::endl;
     
+    {
+        int* a = new int();
+        *a =100;
+        void* b = static_cast<void*>(a);
+        int* c = static_cast<int*>(b);
+        //both contain the same address
+        std::cout << "void *[" << b << "] int* [" << c << "]" << std::endl;        
+    }
+
+    {
+        //For casting to and from void*, static_cast should be preferred.
+        int* a = new int();
+        *a = 200;
+        void* b = reinterpret_cast<void*>(a);
+        int* c = reinterpret_cast<int*>(b);
+        //both contain the same address, but b is undefined 
+        std::cout << "void *[" << b << "] int* [" << c << "]" << std::endl;
+    }
+
     //Dynamic cast to make sure that the polymorphic instance
     //is actually the right object. If it is not then the object
     //will be undefined and we can avoid calling the specific calls
@@ -44,7 +63,7 @@ void TestCastings(CVehicle *pVeh){
     }
 }
 
-int mainVC(){
+int main(){
     CVehicle *pCar = NULL;   
     pCar = new CCar();
     TestCastings(pCar);

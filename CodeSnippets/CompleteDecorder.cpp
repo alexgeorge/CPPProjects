@@ -182,7 +182,7 @@ private:
     std::shared_ptr<CDecoderBase> m_dec = NULL ;
 };
 
-int Codecmain()
+int main()
 {
 
     std::cout<<"Simulate a multithreaded media player!" << std::endl;

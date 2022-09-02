@@ -26,7 +26,7 @@ class CSettingsSington
     }
 private:
 	CSettingsSington(int v=0) {m_value=v;};						//private ctor, only self create it
-	CSettingsSington(const CSettingsSington& gc);				//prevent copy-construction
+	CSettingsSington(const CSettingsSington& gc) = delete;			//prevent copy-construction
 	CSettingsSington &operator = (const CSettingsSington& gc);	//prevent assignment
 };
 
@@ -47,7 +47,7 @@ void bar(void)
   cout << "bar: global_ptr is " << CSettingsSington::instance()->get_value() << '\n';
 }
 
-int mainSingletonPattern()
+int main()
 {
   cout << "main: global_ptr is " << CSettingsSington::instance()->get_value() << '\n';
   foo();
