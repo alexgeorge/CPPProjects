@@ -30,8 +30,8 @@ std::map<int, stMemo> memo;
 bool HowSum(const int targetSum, const std::vector<int> &vecIn, std::vector<int> &vecOut)
 {
     if (memo.find(targetSum) != memo.end()){
-        vecOut = memo[1].vecElems;
-        return memo[1].bRet;
+        vecOut = memo[targetSum].vecElems;
+        return memo[targetSum].bRet;
     }
 
     if (targetSum == 0) return true;
